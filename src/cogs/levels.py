@@ -391,6 +391,8 @@ class Levels(commands.Cog):
         ((users_count,),) = await async_db_execute(
             "SELECT COUNT(*) FROM LEVELS WHERE hidden=FALSE"
         )
+        if page < 1:
+            return await ctx.reply("Please provide a valid leaderboard page number.")
 
         if users_count == 0:
             return await ctx.reply("Start chatting! The database is empty :(")
